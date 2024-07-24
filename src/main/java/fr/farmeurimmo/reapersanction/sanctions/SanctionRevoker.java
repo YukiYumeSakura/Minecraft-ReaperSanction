@@ -8,18 +8,24 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.concurrent.TimeUnit;
+
 public class SanctionRevoker {
 
     public static SanctionRevoker INSTANCE;
 
     public SanctionRevoker() {
         INSTANCE = this;
-
-        Bukkit.getScheduler().runTaskTimerAsynchronously(ReaperSanction.INSTANCE, () -> {
+        Bukkit.getAsyncScheduler().runAtFixedRate(ReaperSanction.INSTANCE, (task) -> {
             for (User user : UsersManager.INSTANCE.users) {
                 checkForSanctionExpiration(user);
             }
-        }, 0, 20);
+        }, 0, 20, TimeUnit.MILLISECONDS);
+//        Bukkit.getScheduler().runTaskTimerAsynchronously(ReaperSanction.INSTANCE, () -> {
+//            for (User user : UsersManager.INSTANCE.users) {
+//                checkForSanctionExpiration(user);
+//            }
+//        }, 0, 20);
     }
 
     public void checkForSanctionExpiration(User user) {

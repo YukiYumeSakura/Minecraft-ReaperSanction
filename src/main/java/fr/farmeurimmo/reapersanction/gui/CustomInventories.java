@@ -38,7 +38,7 @@ public class CustomInventories {
             lore.add("§7IP : §e%ip%");
             switch (type) {
                 case MAIN: {
-                    items.put(10, ItemStackUtils.getItemStack(Material.GRASS, "§aMutes", null, 1));
+                    items.put(10, ItemStackUtils.getItemStack(Material.LEGACY_GRASS, "§aMutes", null, 1));
                     actions.put(10, new ArrayList<>(Collections.singletonList("INT" + ActionGuiInterpreter.SEPARATOR + "GUI" +
                             ActionGuiInterpreter.SEPARATOR + "MUTE" + ActionGuiInterpreter.SEPARATOR + "%player%")));
 
@@ -68,7 +68,7 @@ public class CustomInventories {
                     break;
                 }
                 case BAN: {
-                    items.put(4, ItemStackUtils.getItemStack(Material.GOLD_AXE, "Incorrect build", null, 1));
+                    items.put(4, ItemStackUtils.getItemStack(Material.LEGACY_GOLD_AXE, "Incorrect build", null, 1));
                     actions.put(4, new ArrayList<>(Collections.singletonList("INT" + ActionGuiInterpreter.SEPARATOR + "TEMPBAN" +
                             ActionGuiInterpreter.SEPARATOR + "%player%" + ActionGuiInterpreter.SEPARATOR + "5day" +
                             ActionGuiInterpreter.SEPARATOR + items.get(4).getItemMeta().getDisplayName())));
@@ -83,7 +83,7 @@ public class CustomInventories {
                             ActionGuiInterpreter.SEPARATOR + "%player%" + ActionGuiInterpreter.SEPARATOR + "7day" +
                             ActionGuiInterpreter.SEPARATOR + items.get(11).getItemMeta().getDisplayName())));
 
-                    items.put(12, ItemStackUtils.getItemStack(Material.WOOD_SWORD, "CPS", null, 1));
+                    items.put(12, ItemStackUtils.getItemStack(Material.LEGACY_WOOD_SWORD, "CPS", null, 1));
                     actions.put(12, new ArrayList<>(Collections.singletonList("INT" + ActionGuiInterpreter.SEPARATOR + "TEMPBAN" +
                             ActionGuiInterpreter.SEPARATOR + "%player%" + ActionGuiInterpreter.SEPARATOR + "7day" +
                             ActionGuiInterpreter.SEPARATOR + items.get(12).getItemMeta().getDisplayName())));
@@ -326,7 +326,7 @@ public class CustomInventories {
             FilesManager.INSTANCE.getInventoryData().set(inv.getType() + ".isFill", inv.isFill());
             for (Map.Entry<Integer, ItemStack> entry : inv.getItems().entrySet()) {
                 FilesManager.INSTANCE.getInventoryData().set(inv.getType() + ".items." + entry.getKey() + ".type", entry.getValue().getType().name());
-                if (entry.getValue().getType() == Material.SKULL_ITEM) {
+                if (entry.getValue().getType() == Material.LEGACY_SKULL_ITEM) {
                     SkullMeta meta = (SkullMeta) entry.getValue().getItemMeta();
                     FilesManager.INSTANCE.getInventoryData().set(inv.getType() + ".items." + entry.getKey() + ".owner", meta.getOwner());
                 }
@@ -370,7 +370,7 @@ public class CustomInventories {
                             }
                         }
                         ItemStack item;
-                        if (material != Material.SKULL_ITEM) {
+                        if (material != Material.LEGACY_SKULL_ITEM) {
                             item = ItemStackUtils.getItemStack(material, display, lore, amount);
                         } else {
                             String owner = FilesManager.INSTANCE.getInventoryData().getString(type + ".items." + key + ".owner");

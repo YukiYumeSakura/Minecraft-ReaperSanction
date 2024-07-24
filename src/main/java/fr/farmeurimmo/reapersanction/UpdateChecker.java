@@ -20,7 +20,7 @@ public class UpdateChecker {
     }
 
     public void getVersion(final Consumer<String> consumer) {
-        Bukkit.getScheduler().runTaskAsynchronously(this.plugin, () -> {
+        Bukkit.getAsyncScheduler().runNow(this.plugin, (task) -> {
             try (InputStream inputStream = new URL("https://api.spigotmc.org/legacy/update.php?resource=" + this.resourceId).openStream(); Scanner scanner = new Scanner(inputStream)) {
                 if (scanner.hasNext()) {
                     consumer.accept(scanner.next());
@@ -29,5 +29,14 @@ public class UpdateChecker {
                 plugin.getLogger().info("Auto updater crashed, please go to https://reaper.farmeurimmo.fr/reapersanction and check for updates manually.");
             }
         });
+//        Bukkit.getScheduler().runTaskAsynchronously(this.plugin, () -> {
+//            try (InputStream inputStream = new URL("https://api.spigotmc.org/legacy/update.php?resource=" + this.resourceId).openStream(); Scanner scanner = new Scanner(inputStream)) {
+//                if (scanner.hasNext()) {
+//                    consumer.accept(scanner.next());
+//                }
+//            } catch (IOException exception) {
+//                plugin.getLogger().info("Auto updater crashed, please go to https://reaper.farmeurimmo.fr/reapersanction and check for updates manually.");
+//            }
+//        });
     }
 }

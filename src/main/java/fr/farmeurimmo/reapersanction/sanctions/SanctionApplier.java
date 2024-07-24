@@ -117,8 +117,8 @@ public class SanctionApplier {
         }
         long timemillis = getMillisOfEmission(System.currentTimeMillis(), duration, type);
 
-        duration = duration + type.replace("sec", " second(s)").replace("min", " minute(s)")
-                .replace("day", " day(s)").replace("hour", " hour(s)").replace("year", " year(s)");
+        duration = duration + type.replace("sec", "秒").replace("min", "分钟")
+                .replace("day", "天").replace("hour", "小时").replace("year", "年");
         Sanction sanction = new Sanction(2, reason, sender.getName(), System.currentTimeMillis(), timemillis, true, false, duration);
         user.setBannedBy(sanction.getBy());
         user.setBannedUntil(sanction.getUntil());
@@ -316,7 +316,7 @@ public class SanctionApplier {
     public long getMillisOfEmission(long until, String duration, String type) {
         if (type.equalsIgnoreCase("sec")) until += Integer.parseInt(duration) * 1000L;
         if (type.equalsIgnoreCase("min")) until += Integer.parseInt(duration) * 60000L;
-        if (type.equalsIgnoreCase("hour")) until += Integer.parseInt(duration) * 360000L;
+        if (type.equalsIgnoreCase("hour")) until += Integer.parseInt(duration) * 3600000L;
         if (type.equalsIgnoreCase("day")) until += Integer.parseInt(duration) * 86400000L;
         if (type.equalsIgnoreCase("year")) until += Integer.parseInt(duration) * 31536000000L;
         return until;
