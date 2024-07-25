@@ -6,7 +6,7 @@ import java.util.Date;
 public class TimeConverter {
 
     public static String getFormatTimeWithTZ(Date currentTime) {
-        SimpleDateFormat timeZoneDate = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+        SimpleDateFormat timeZoneDate = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
         return timeZoneDate.format(currentTime);
     }
 
