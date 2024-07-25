@@ -189,7 +189,9 @@ public class ReaperSanction extends JavaPlugin implements Listener {
                 }
             }
         });
-        Bukkit.getScheduler().runTaskLater(this, this::checkForUpdate, 20 * 60 * 60);
+        Bukkit.getGlobalRegionScheduler().runDelayed(this, (task) -> {
+            checkForUpdate();
+        }, 20 * 60 * 60);
     }
 
     public void Vanish() {
@@ -198,7 +200,9 @@ public class ReaperSanction extends JavaPlugin implements Listener {
                 players.hidePlayer(pl);
             }
         }
-        Bukkit.getServer().getScheduler().runTaskLaterAsynchronously(ReaperSanction.INSTANCE, this::Vanish, 20);
+        Bukkit.getGlobalRegionScheduler().runDelayed(ReaperSanction.INSTANCE, (task) -> {
+            Vanish();
+        }, 20);
     }
 
     public String getVersion() {
@@ -206,7 +210,7 @@ public class ReaperSanction extends JavaPlugin implements Listener {
     }
 
     public String getServerName() {
-        return Bukkit.getServerName();
+        return Bukkit.getServer().getName();
     }
 
     public boolean isDiscordWebhookActive() {

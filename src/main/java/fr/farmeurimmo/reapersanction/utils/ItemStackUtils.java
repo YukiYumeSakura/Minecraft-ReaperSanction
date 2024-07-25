@@ -19,7 +19,7 @@ public class ItemStackUtils {
     }
 
     public static ItemStack getSkull(String name, String owner, ArrayList<String> lore) {
-        ItemStack stack = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
+        ItemStack stack = new ItemStack(Material.LEGACY_SKULL_ITEM, 1, (byte) 3);
         ItemMeta meta = stack.getItemMeta();
         ((SkullMeta) meta).setOwner(owner);
         meta.setDisplayName(name);
